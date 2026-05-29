@@ -1,0 +1,6 @@
+﻿[dotenv@17.3.1] injecting env (7) from .env -- tip: ΓÜÖ∩╕Å  specify custom .env file path with { path: '/custom/path/.env' }
+--- Model Probe Results ---
+[404]  gemini-1.5-flash (Model not found)
+[404]  gemini-1.5-flash-8b (Model not found)
+[404]  gemini-2.0-flash-lite-preview-02-05 (Model not found)
+[404]  gemini-1.0-pro (Model not found)

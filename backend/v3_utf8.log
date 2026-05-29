@@ -1,0 +1,12 @@
+﻿[dotenv@17.3.1] injecting env (7) from .env -- tip: ≡ƒñû agentic secret storage: https://dotenvx.com/as2
+--- New Key Model Probe ---
+Testing: gemini-2.5-flash-lite
+[PASS] gemini-2.5-flash-lite: Absolutely! I'm ready.
+
+What would you like to tes...
+Testing: gemini-2.0-flash-lite
+[FAIL] gemini-2.0-flash-lite: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/mod
+Testing: gemini-flash-latest
+[PASS] gemini-flash-latest: I am ready! Whether it's coding, creative writing,...
+Testing: gemini-2.0-flash
+[FAIL] gemini-2.0-flash: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/mod

@@ -1,0 +1,68 @@
+﻿[dotenv@17.3.1] injecting env (7) from .env -- tip: ≡ƒöÉ prevent committing .env to code: https://dotenvx.com/precommit
+Testing: gemini-2.0-flash-lite
+node.exe : FAILED 
+[gemini-2.0-flash-lite]: 
+[GoogleGenerativeAI Error]: Error 
+fetching from https://generativelangu
+age.googleapis.com/v1beta/models/gemi
+ni-2.0-flash-lite:generateContent: 
+[429 Too Many Requests] You exceeded 
+your current quota, please check 
+your plan and billing details. For 
+more information on this error, head 
+to: https://ai.google.dev/gemini-api/
+docs/rate-limits. To monitor your 
+current usage, head to: 
+https://ai.dev/rate-limit. 
+At C:\Program 
+Files\nodejs\npx.ps1:29 char:3
++   & $NODE_EXE $NPX_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpe 
+   cified: (FAILED [gemini-...ev/ra  
+  te-limit. :String) [], RemoteExc   
+ eption
+    + FullyQualifiedErrorId : Native 
+   CommandError
+ 
+* Quota exceeded for metric: generati
+velanguage.googleapis.com/generate_co
+ntent_free_tier_requests, limit: 0, 
+model: gemini-2.0-flash-lite
+* Quota exceeded for metric: generati
+velanguage.googleapis.com/generate_co
+ntent_free_tier_requests, limit: 0, 
+model: gemini-2.0-flash-lite
+* Quota exceeded for metric: generati
+velanguage.googleapis.com/generate_co
+ntent_free_tier_input_token_count, 
+limit: 0, model: 
+gemini-2.0-flash-lite
+Please retry in 24.298861886s. [{"@ty
+pe":"type.googleapis.com/google.rpc.H
+elp","links":[{"description":"Learn 
+more about Gemini API quotas","url":"
+https://ai.google.dev/gemini-api/docs
+/rate-limits"}]},{"@type":"type.googl
+eapis.com/google.rpc.QuotaFailure","v
+iolations":[{"quotaMetric":"generativ
+elanguage.googleapis.com/generate_con
+tent_free_tier_requests","quotaId":"G
+enerateRequestsPerDayPerProjectPerMod
+el-FreeTier","quotaDimensions":{"loca
+tion":"global","model":"gemini-2.0-fl
+ash-lite"}},{"quotaMetric":"generativ
+elanguage.googleapis.com/generate_con
+tent_free_tier_requests","quotaId":"G
+enerateRequestsPerMinutePerProjectPer
+Model-FreeTier","quotaDimensions":{"m
+odel":"gemini-2.0-flash-lite","locati
+on":"global"}},{"quotaMetric":"genera
+tivelanguage.googleapis.com/generate_
+content_free_tier_input_token_count",
+"quotaId":"GenerateContentInputTokens
+PerModelPerMinute-FreeTier","quotaDim
+ensions":{"model":"gemini-2.0-flash-l
+ite","location":"global"}}]},{"@type"
+:"type.googleapis.com/google.rpc.Retr
+yInfo","retryDelay":"24s"}]

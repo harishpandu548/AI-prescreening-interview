@@ -1,0 +1,149 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String     @id @default(uuid())
+  name      String
+  email     String     @unique
+  password  String
+  role      UserRole   @default(HR)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  campaigns Campaign[]
+}
+
+model Campaign {
+  id              String      @id @default(uuid())
+  title           String
+  jobRole         String      @default("")
+  requiredSkills  String[]
+  customQuestions String[]    @default([])
+  difficulty      Difficulty  @default(INTERMEDIATE)
+  questionCount   Int         @default(5)
+  timePerQuestion Int         @default(120)
+  createdById     String
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  createdBy       User        @relation(fields: [createdById], references: [id])
+  candidates      Candidate[]
+
+  @@index([createdById])
+}
+
+model Candidate {
+  id                     String            @id @default(uuid())
+  name                   String
+  email                  String
+  campaignId             String
+  interviewToken         String            @unique @default(uuid())
+  tokenExpiry            DateTime
+  attemptUsed            Boolean           @default(false)
+  inviteSent             Boolean           @default(false)
+  pipelineStage          String            @default("SOURCED") // SOURCED, SHORTLISTED, INVITED, REJECTED
+  fitScore               Float?
+  resumeAlignmentStatus  String            @default("PENDING")
+  resumeAlignmentReason  String            @default("")
+  createdAt              DateTime          @default(now())
+  updatedAt              DateTime          @updatedAt
+  campaign               Campaign          @relation(fields: [campaignId], references: [id])
+  session                InterviewSession?
+  resume                 Resume?
+
+  @@index([campaignId])
+  @@index([interviewToken])
+}
+
+model Resume {
+  id                   String    @id @default(uuid())
+  candidateId          String    @unique
+  fileUrl              String
+  extractedText        String
+  skillMatchPercentage Float
+  createdAt            DateTime  @default(now())
+  candidate            Candidate @relation(fields: [candidateId], references: [id])
+}
+
+model InterviewSession {
+  id             String         @id @default(uuid())
+  candidateId    String         @unique
+  startedAt      DateTime?
+  completedAt    DateTime?
+  overallScore   Float?
+  recommendation Recommendation @default(PENDING)
+  antiCheatFlag  Boolean        @default(false)
+  createdAt      DateTime       @default(now())
+  antiCheatLogs  AntiCheatLog[]
+  candidate      Candidate      @relation(fields: [candidateId], references: [id])
+  questions      Question[]
+}
+
+model Question {
+  id         String           @id @default(uuid())
+  sessionId  String
+  text       String
+  difficulty String
+  order      Int
+  createdAt  DateTime         @default(now())
+  answer     Answer?
+  session    InterviewSession @relation(fields: [sessionId], references: [id])
+
+  @@index([sessionId])
+}
+
+model Answer {
+  id                 String   @id @default(uuid())
+  questionId         String   @unique
+  audioUrl           String?
+  transcript         String?
+  technicalScore     Float?
+  depthScore         Float?
+  communicationScore Float?
+  overallScore       Float?
+  strengths          String[]
+  weaknesses         String[]
+  feedback           String?
+  createdAt          DateTime @default(now())
+  question           Question @relation(fields: [questionId], references: [id])
+}
+
+model AntiCheatLog {
+  id        String           @id @default(uuid())
+  sessionId String
+  type      AntiCheatType
+  timestamp DateTime         @default(now())
+  session   InterviewSession @relation(fields: [sessionId], references: [id])
+
+  @@index([sessionId])
+}
+
+enum UserRole {
+  ADMIN
+  HR
+}
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+enum Recommendation {
+  STRONG_HIRE
+  CONSIDER
+  REJECT
+  PENDING
+}
+
+enum AntiCheatType {
+  TAB_SWITCH
+  EXIT_FULLSCREEN
+  MULTIPLE_FACES
+  NO_FACE_DETECTED
+}

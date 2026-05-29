@@ -1,0 +1,18 @@
+﻿[dotenv@17.3.1] injecting env (7) from .env -- tip: ΓÜÖ∩╕Å  load multiple .env files with { path: ['.env.local', '.env'] }
+Starting model scan with NEW key...
+Testing: gemini-1.5-flash-001
+[FAIL] gemini-1.5-flash-001: 404
+Testing: gemini-1.5-flash-002
+[FAIL] gemini-1.5-flash-002: 404
+Testing: gemini-1.5-pro-001
+[FAIL] gemini-1.5-pro-001: 404
+Testing: gemini-1.5-pro-002
+[FAIL] gemini-1.5-pro-002: 404
+Testing: gemini-2.0-flash
+[FAIL] gemini-2.0-flash: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/mod
+Testing: gemini-2.0-flash-lite-exp
+[FAIL] gemini-2.0-flash-lite-exp: 404
+Testing: gemini-1.5-flash-8b
+[FAIL] gemini-1.5-flash-8b: 404
+Testing: gemini-pro
+[FAIL] gemini-pro: 404
